@@ -1,0 +1,9 @@
+[theme]
+primaryColor = "#005BAC"         # Vinamilk dark blue
+backgroundColor = "#F2F8FF"      # Light blue background
+secondaryBackgroundColor = "#FFFFFF"  # White cards/containers
+textColor = "#0C1C2C"            # Dark gray/blue text
+base = "light"
+
+[tool.poetry.dependencies]
+python = "3.12" # Or specifically "3.12" etc.
