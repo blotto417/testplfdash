@@ -1,0 +1,16 @@
+streamlit
+pandas
+matplotlib
+plotly
+streamlit-echarts
+python-dateutil
+numpy
+openpyxl
+datetime
+mysql-connector-python
+mysqlclient
+SQLAlchemy
+streamlit_option_menu == 0.4.0
+altair
+streamlit_card == 1.0.2
+streamlit-extras
