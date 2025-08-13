@@ -593,8 +593,10 @@ def display(query_data, active_filters, start_date, end_date):
                         st.warning(f"No data for {platform}.")
 
         # --- Effectiveness and Efficiency Tables ---
+        
+        # EFFECTIVENESS Table Container
         with stylable_container(
-            key="effectiveness_efficiency_container",
+            key="effectiveness_container",
             css_styles="""
                 {
                     background: var(--card-bg);
@@ -606,7 +608,6 @@ def display(query_data, active_filters, start_date, end_date):
                 }
             """
         ):
-            # EFFECTIVENESS Table
             st.subheader("EFFECTIVENESS")
             
             # Query data for Effectiveness table
@@ -678,7 +679,7 @@ def display(query_data, active_filters, start_date, end_date):
                         }
                     ):
                         with mui.TableContainer(sx={"maxHeight": 400, "position": "relative"}):
-                            with mui.Table(stickyHeader=True, size="small"):
+                            with mui.Table(stickyHeader=True, stickyFooter=True, size="small"):
                                 # Table Header
                                 with mui.TableHead():
                                     with mui.TableRow():
@@ -840,10 +841,174 @@ def display(query_data, active_filters, start_date, end_date):
                                                     "borderRight": "1px solid #e2e8f0"
                                                 }
                                             )
+                                    
+                                    # Summary Row
+                                    with mui.TableRow(
+                                        sx={
+                                            "backgroundColor": "#f8fafc",
+                                            "fontWeight": "bold"
+                                        }
+                                    ):
+                                        # Total/Average labels
+                                        mui.TableCell(
+                                            "TOTAL/AVG",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Brand
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Funnel
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Platform
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Format
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Audience
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Total Clicks
+                                        mui.TableCell(
+                                            f"{effectiveness_df['Clicks'].sum():,.0f}",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Total Views
+                                        mui.TableCell(
+                                            f"{effectiveness_df['Views'].sum():,.0f}",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Total Impressions
+                                        mui.TableCell(
+                                            f"{effectiveness_df['Impression'].sum():,.0f}",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Average VTR
+                                        mui.TableCell(
+                                            f"{effectiveness_df['VTR'].mean():.2f}%",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Average CTR
+                                        mui.TableCell(
+                                            f"{effectiveness_df['CTR'].mean():.2f}%",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
             else:
                 st.warning("No effectiveness data available.")
 
-            # EFFICIENCY Table
+        # EFFICIENCY Table Container
+        with stylable_container(
+            key="efficiency_container",
+            css_styles="""
+                {
+                    background: var(--card-bg);
+                    border: 1px solid var(--gray-border);
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                    padding: 1.25rem;
+                    margin-top: 2rem;
+                }
+            """
+        ):
             st.subheader("EFFICIENCY")
             
             # Query data for Efficiency table
@@ -914,7 +1079,7 @@ def display(query_data, active_filters, start_date, end_date):
                         }
                     ):
                         with mui.TableContainer(sx={"maxHeight": 400, "position": "relative"}):
-                            with mui.Table(stickyHeader=True, size="small"):
+                            with mui.Table(stickyHeader=True, stickyFooter=True, size="small"):
                                 # Table Header
                                 with mui.TableHead():
                                     with mui.TableRow():
@@ -1076,5 +1241,156 @@ def display(query_data, active_filters, start_date, end_date):
                                                     "borderRight": "1px solid #e2e8f0"
                                                 }
                                             )
+                                    
+                                    # Summary Row
+                                    with mui.TableRow(
+                                        sx={
+                                            "backgroundColor": "#f8fafc",
+                                            "fontWeight": "bold"
+                                        }
+                                    ):
+                                        # Total/Average labels
+                                        mui.TableCell(
+                                            "TOTAL/AVG",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Brand
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Funnel
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Platform
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Format
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Audience
+                                        mui.TableCell(
+                                            "-",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Total Cost
+                                        mui.TableCell(
+                                            f"{efficiency_df['Cost'].sum():,.0f}",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Total Views
+                                        mui.TableCell(
+                                            f"{efficiency_df['Views'].sum():,.0f}",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Total Impressions
+                                        mui.TableCell(
+                                            f"{efficiency_df['Impression'].sum():,.0f}",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Average CPV
+                                        mui.TableCell(
+                                            f"{efficiency_df['CPV'].mean():.2f}",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
+                                        # Average CPM
+                                        mui.TableCell(
+                                            f"{efficiency_df['CPM'].mean():.2f}",
+                                            sx={
+                                                "textAlign": "center",
+                                                "padding": "6px 4px",
+                                                "fontSize": "0.7rem",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "2px solid #003366",
+                                                "borderRight": "1px solid #e2e8f0",
+                                                "backgroundColor": "#f8fafc"
+                                            }
+                                        )
             else:
                 st.warning("No efficiency data available.")
