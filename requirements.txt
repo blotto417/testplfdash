@@ -15,3 +15,4 @@ altair
 streamlit_card == 1.0.2
 streamlit-extras
 streamlit-aggrid
+streamlit-elements==0.1.*
