@@ -467,7 +467,9 @@ def styled_kpi_card(
     icon: str = "📊",
     progress_value: float = 0,
     progress_max: float = 100,
-    color: str = "blue"
+    color: str = "blue",
+    bar: bool = True,
+    height: str = "auto"
 ):
     """
     A modern, visually rich KPI card with an icon and a progress bar.
@@ -482,50 +484,86 @@ def styled_kpi_card(
     theme = color_map.get(color, color_map["blue"])
     
     progress_percentage = min((progress_value / progress_max) * 100, 100) if progress_max > 0 else 0
-    
-    st.markdown(f"""
-    <div class="metric-card" style="
-        background-color: #FFFFFF;
-        border: 1px solid #E0E0E0;
-        border-radius: 12px;
-        padding: 1.5rem;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        height: 170px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    ">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between;">
-            <div style="
-                width: 48px;
-                height: 48px;
-                border-radius: 12px;
-                background-color: {theme['bg']};
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 24px;
-                color: {theme['icon']};
-            ">
-                {icon}
-            </div>
-            <div style="text-align: right;">
-                <div style="font-size: 1rem; color: #6C757D; font-weight: 500;">{title}</div>
-                <div style="font-size: 2.2rem; font-weight: 700; color: #212529;">{value}</div>
-            </div>
-        </div>
-        <div>
-            <div style="font-size: 0.9rem; color: #6C757D; margin-bottom: 0.5rem;">{delta}</div>
-            <div style="background-color: #E9ECEF; border-radius: 4px; height: 8px;">
+    if bar:
+        st.markdown(f"""
+        <div class="metric-card" style="
+            background-color: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            height: {height};
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        ">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between;">
                 <div style="
-                    width: {progress_percentage}%;
-                    background-color: {theme['progress']};
-                    border-radius: 4px;
-                    height: 8px;
-                "></div>
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 12px;
+                    background-color: {theme['bg']};
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    color: {theme['icon']};
+                ">
+                    {icon}
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 1rem; color: #6C757D; font-weight: 500;">{title}</div>
+                    <div style="font-size: 2.2rem; font-weight: 700; color: #212529;">{value}</div>
+                </div>
+            </div>
+            <div>
+                <div style="font-size: 0.9rem; color: #6C757D; margin-bottom: 0.5rem;">{delta}</div>
+                <div style="background-color: #E9ECEF; border-radius: 4px; height: 8px;">
+                    <div style="
+                        width: {progress_percentage}%;
+                        background-color: {theme['progress']};
+                        border-radius: 4px;
+                        height: 8px;
+                    "></div>
+                </div>
             </div>
         </div>
-    </div>
+    """, unsafe_allow_html=True)
+    else:
+        st.markdown(f"""
+        <div class="metric-card" style="
+            background-color: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            height: {height};
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        ">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+                <div style="
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 12px;
+                    background-color: {theme['bg']};
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    color: {theme['icon']};
+                ">
+                    {icon}
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 1rem; color: #6C757D; font-weight: 500;">{title}</div>
+                    <div style="font-size: 2.2rem; font-weight: 700; color: #212529;">{value}</div>
+                </div>
+            </div>
+        </div>
     """, unsafe_allow_html=True)
